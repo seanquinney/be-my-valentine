@@ -1,35 +1,42 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
+    <div style={{ 
+      minHeight: '100vh',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      background: 'linear-gradient(135deg, #ff9a9e, #fad0c4)',
+      color: '#fff',
+      fontFamily: 'system-ui, -apple-system, sans-serif'
+    }}>
+      <h1 style={{ fontSize: '3rem', marginBottom: '1rem' }}>
+        💖 Be My Valentine? 💖
+      </h1>
+
+      <p style={{ fontSize: '1.2rem', marginBottom: '2rem' }}>
+        I made this website just for you.
       </p>
-    </>
+
+      <button
+        style={{
+          padding: '12px 24px',
+          fontSize: '1.1rem',
+          borderRadius: '999px',
+          border: 'none',
+          cursor: 'pointer',
+          backgroundColor: '#fff',
+          color: '#ff4d6d'
+        }}
+        onClick={() => alert('💘 She said yes 💘')}
+      >
+        Yes ❤️
+      </button>
+    </div>
   )
 }
 
 export default App
+
