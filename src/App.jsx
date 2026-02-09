@@ -1,6 +1,7 @@
 import './App.css'
 import { useState } from "react";
 import valentineImg from "./assets/happy.jpg";
+import confetti from 'canvas-confetti';
 
 function App() {
   const [position, setPosition] = useState({ x: 0, y: 80 });
@@ -8,6 +9,11 @@ function App() {
 
   const handleYesClick = () => {
     setShowImage(true);
+    confetti({
+      particleCount: 100,
+      spread: 70,
+      origin: { y: 0.6 }
+    });
   };
 
 const MIN_DISTANCE = 150;
