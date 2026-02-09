@@ -1,85 +1,113 @@
 import './App.css'
 import { useState } from "react";
-import happy from "./assets/happy.jpg";
+import valentineImg from "./assets/happy.jpg";
 
 function App() {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [position, setPosition] = useState({ x: 0, y: 80 });
   const [showImage, setShowImage] = useState(false);
 
-  const moveButton = () => {
-    const newX = Math.random() * 300 - 150;
-    const newY = Math.random() * 300 - 150;
-    setPosition({ x: newX, y: newY });
+  const handleYesClick = () => {
+    setShowImage(true);
   };
 
+const MIN_DISTANCE = 150;
+
+const moveNoButton = () => {
+  let x, y, distance;
+
+  do {
+    x = Math.random() * 400 - 200;
+    y = Math.random() * 200 + 120;
+
+    distance = Math.sqrt(x * x + y * y);
+  } while (distance < MIN_DISTANCE);
+
+  setPosition({ x, y });
+};
+
+
   return (
-    <div style={{ 
+    <div style={{
       minHeight: '100vh',
       display: 'flex',
-      flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center',
       background: 'linear-gradient(135deg, #ff9a9e, #fad0c4)',
-      color: '#fff',
-      fontFamily: 'system-ui, -apple-system, sans-serif',
-      position: 'relative'
+      fontFamily: 'system-ui, -apple-system, sans-serif'
     }}>
-      <h1 style={{ fontSize: '3rem', marginBottom: '1rem' }}>
-        💖 Be My Valentine? 💖
-      </h1>
+      <div style={{
+        position: 'relative',
+        width: '1000px',
+        height: '220px',
+        textAlign: 'center'
+      }}>
+        <h1 style={{ color: '#fff', marginBottom: '20px' }}>
+          💖 Be My Valentine? 💖
+        </h1>
 
-      {!showImage && (
-        <>
-          <button
-            style={{
-              padding: '12px 24px',
-              fontSize: '1.1rem',
-              borderRadius: '999px',
-              border: 'none',
-              cursor: 'pointer',
-              backgroundColor: '#fff',
-              color: '#ff4d6d',
-              marginBottom: '1rem'
-            }}
-            onClick={() => setShowImage(true)}
-          >
-            Yes
-          </button>
+        {!showImage && (
+          <>
+            {/* YES BUTTON */}
+            <button
+              onClick={handleYesClick}
+              style={{
+                position: 'absolute',
+                top: '120px',
+                left: '50%',
+                transform: 'translateX(-50%)',
+                padding: '12px 24px',
+                fontSize: '1.1rem',
+                borderRadius: '999px',
+                border: 'none',
+                cursor: 'pointer',
+                backgroundColor: '#fff',
+                color: '#ff4d6d'
+              }}
+            >
+              Yes
+            </button>
 
-          <button
-            onMouseEnter={moveButton}
-            style={{
-              padding: '12px 24px',
-              fontSize: '1.1rem',
-              borderRadius: '999px',
-              border: 'none',
-              cursor: 'pointer',
-              backgroundColor: '#fff',
-              color: '#ff4d6d',
-              transform: `translate(${position.x}px, ${position.y}px)`,
-              transition: 'transform 0.2s ease'
-            }}
-          >
-            No
-          </button>
-        </>
-      )}
+            {/* NO BUTTON */}
+            <button
+              onMouseEnter={moveNoButton}
+              style={{
+                position: 'absolute',
+                top: '120px',
+                left: '50%',
+                transform: `translate(-50%, 0) translate(${position.x}px, ${position.y}px)`,
+                transition: 'transform 0.2s ease',
+                padding: '12px 24px',
+                fontSize: '1.1rem',
+                borderRadius: '999px',
+                border: 'none',
+                cursor: 'pointer',
+                backgroundColor: '#fff',
+                color: '#ff4d6d'
+              }}
+            >
+              No
+            </button>
+          </>
+        )}
 
-      {showImage && (
-        <>
-          <img
-            src={happy}
-            alt="Valentine"
-            style={{
-              maxWidth: '300px',
-              borderRadius: '16px',
-              boxShadow: '0 10px 30px rgba(0,0,0,0.3)',
-              marginBottom: '1rem'
-            }}
-          />
-          <h2>💘 Yay! 💘</h2>
-        </>
-      )}
+        {showImage && (
+          <>
+            <img
+              src={valentineImg}
+              alt="Valentine"
+              style={{
+                width: '100%',
+                maxWidth: '280px',
+                borderRadius: '16px',
+                boxShadow: '0 10px 30px rgba(0,0,0,0.3)'
+              }}
+            />
+            <h2 style={{ color: '#fff', marginTop: '16px' }}>
+              💘 Yay! 💘
+            </h2>
+          </>
+        )}
+      </div>
     </div>
   );
 }
